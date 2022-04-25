@@ -1,9 +1,4 @@
 import pygame
-import sys
-
-
-def execute():
-    print("xama")
 
 
 class GraphicManager:
@@ -16,6 +11,9 @@ class GraphicManager:
 
     def draw(self, figure, position):
         self.screen.blit(figure, position)
+
+    def fill(self):
+        self.screen.fill((0, 0, 0))
 
     def closeWindow(self):
         for event in pygame.event.get():

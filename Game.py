@@ -1,16 +1,15 @@
 from GraphicManager import GraphicManager
-
-import sys
-
+from MainMenuState import MainMenuState
 
 class Game:
     graphicManager = None
-    stateVector = None
+    stateVector = []
 
     def __init__(self):
         self.graphicManager = GraphicManager()
+        self.stateVector.append(MainMenuState())
         # push no stateVector do stateMenu
 
     def execute(self):
         while not self.graphicManager.closeWindow():
-            print("execute last state")
+            self.stateVector[-1].execute()
