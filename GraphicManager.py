@@ -2,7 +2,7 @@ import pygame
 
 
 class GraphicManager:
-    size = width, height = 1024, 576
+    size = width, height = 800, 800
     screen = None
 
     def __init__(self):
@@ -15,7 +15,7 @@ class GraphicManager:
     def fill(self):
         self.screen.fill((0, 0, 0))
 
-    def closeWindow(self):
+    def windowIsOpen(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return True

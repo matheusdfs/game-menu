@@ -1,14 +1,14 @@
-from abc import ABC
-from State import State
-from GraphicManager import GraphicManager
+from MenuState import MenuState
+from Button import Button
 
 
-class MainMenuState(State, ABC):
-    graphicManager = None
+class MainMenuState(MenuState):
+    playButton = None
 
     def __init__(self, gp):
-        State.__init__(self, "MainMenu")
+        MenuState.__init__(self, "MainMenu")
         self.graphicManager = gp
+        self.playButton = Button(gp, 'img/landscapeMainMenu.png')
 
     def execute(self):
-        print(self.name)
+        self.playButton.draw()
