@@ -1,20 +1,30 @@
 import pygame.display
-
+from pygame import mixer
 from GraphicManager import GraphicManager
 from MainMenuState import MainMenuState
+from SoundManager import SoundManager
 
 
 class Game:
+    shouldCloseWindow = False
     graphicManager = None
+    soundManager = None
     stateVector = []
 
     def __init__(self):
         self.graphicManager = GraphicManager()
-        self.stateVector.append(MainMenuState(self.graphicManager))
+        self.soundManager = SoundManager()
+        self.stateVector.append(MainMenuState(self.graphicManager, self.soundManager, self))
         self.execute()
 
     def execute(self):
-        while not self.graphicManager.windowIsOpen():
+        while not self.graphicManager.shouldCloseWindow() and not self.shouldCloseWindow:
             self.graphicManager.fill()
             self.stateVector[-1].execute()
             pygame.display.update()
+
+    def addState(self, state):
+        self.stateVector.append(state)
+
+    def setShouldCloseWindowTrue(self):
+        self.shouldCloseWindow = True

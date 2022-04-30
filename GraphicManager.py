@@ -15,7 +15,16 @@ class GraphicManager:
     def fill(self):
         self.screen.fill((0, 0, 0))
 
-    def windowIsOpen(self):
+    def getMousePosition(self):
+        return pygame.mouse.get_pos()
+
+    def getScreenWidth(self):
+        return self.width
+
+    def getScreenHeight(self):
+        return self.height
+
+    def shouldCloseWindow(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return True

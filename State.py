@@ -2,12 +2,14 @@ from abc import ABC, abstractmethod
 
 
 class State(ABC):
-    name = ""
+    game = None
     graphicManager = None
+    soundManager = None
 
-    def __init__(self, name, gp):
-        self.name = name
+    def __init__(self, gp, sd, game):
         self.graphicManager = gp
+        self.soundManager = sd
+        self.game = game
 
     @abstractmethod
     def execute(self):

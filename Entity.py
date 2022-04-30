@@ -1,5 +1,5 @@
 import pygame
-from abc import ABC
+from abc import ABC, abstractmethod
 from GraphicManager import GraphicManager
 
 
@@ -11,9 +11,12 @@ class Entity(ABC):
     rect = None
     graphicManager = None
 
-    def __init__(self, gp, imageDir):
-        self.image = pygame.image.load(imageDir)
+    def __init__(self, gp, image, x, y):
+        self.image = image
         self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
+        self.coordX = x
+        self.coordY = y
         self.graphicManager = gp
 
     def setGraphicManager(self, gp):
@@ -21,3 +24,7 @@ class Entity(ABC):
 
     def draw(self):
         self.graphicManager.draw(self.image, (self.coordX, self.coordY))
+
+    @abstractmethod
+    def execute(self):
+        pass

@@ -3,8 +3,10 @@ from State import State
 
 
 class MenuState(State, ABC):
-    def __init__(self, gp):
-        State.__init__(self, "MainMenu", gp)
+    background = None
+
+    def __init__(self, gp, sd, game):
+        State.__init__(self, gp, sd, game)
 
     @abstractmethod
     def execute(self):
