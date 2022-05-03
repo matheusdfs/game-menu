@@ -16,7 +16,7 @@ class Button(Entity, ABC):
         self.draw()
         if self.rect.collidepoint(self.graphicManager.getMousePosition()):
             if not self.soundButton:
-                self.soundManager.playSound('sounds/button-sound.mp3')
+                self.soundManager.playSound('sounds/button-sound.wav')
                 self.soundButton = True
 
             if pygame.mouse.get_pressed()[0] == 1:

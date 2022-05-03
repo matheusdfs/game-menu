@@ -8,12 +8,12 @@ class SoundManager:
         mixer.music.play(-1)
         self.setVolume(0.1)
 
-    def loadMusic(self, mp3Dir):
-        mixer.music.load(mp3Dir)
+    def loadMusic(self, dir):
+        mixer.music.load(dir)
         mixer.music.play(-1)
 
-    def playSound(self, mp3Dir):
-        mixer.Sound(mp3Dir).play()
+    def playSound(self, dir):
+        mixer.Sound(dir).play()
 
     def setVolume(self, vol):
         mixer.music.set_volume(vol)
