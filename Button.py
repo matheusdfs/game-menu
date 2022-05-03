@@ -2,18 +2,23 @@ from abc import ABC
 
 import pygame
 from Entity import Entity
-from GraphicManager import GraphicManager
 
 
 class Button(Entity, ABC):
     name = None
+    mouseIsIn = False
 
-    def __init__(self, gp, image, x, y, name):
-        Entity.__init__(self, gp, image, x, y)
+    def __init__(self, gp, sd, image, x, y, name):
+        Entity.__init__(self, gp, sd, image, x, y)
         self.name = name
 
     def execute(self):
         self.draw()
-        if self.rect.collidepoint(self.graphicManager.getMousePosition()) and pygame.mouse.get_pressed()[0] == 1:
-            return self.name
+        if self.rect.collidepoint(self.graphicManager.getMousePosition()):
+            if not self.mouseIsIn:
+                self.soundManager.playSound('sounds/button-sound.mp3')
+                self.mouseIsIn = True
+
+            if pygame.mouse.get_pressed()[0] == 1:
+                return self.name
         return ''

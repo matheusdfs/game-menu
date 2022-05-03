@@ -10,8 +10,9 @@ class Entity(ABC):
     image = None
     rect = None
     graphicManager = None
+    soundManager = None
 
-    def __init__(self, gp, image, x, y):
+    def __init__(self, gp, sm, image, x, y):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)

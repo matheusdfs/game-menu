@@ -18,9 +18,23 @@ class MainMenuState(MenuState):
         # Initializing the background of the mainMenu
         aux = Background(
             gp,
+            sd,
             image,
             0,
             0
+        )
+
+        self.entityArray.append(aux)
+
+        image = pygame.image.load('img/mainTitle.png').convert_alpha()
+
+        # Initializing the title of the mainMenu
+        aux = Background(
+            gp,
+            sd,
+            image,
+            gp.getScreenWidth() / 2 - image.get_rect().width / 2,
+            gp.getScreenHeight()/4
         )
 
         self.entityArray.append(aux)
@@ -30,6 +44,7 @@ class MainMenuState(MenuState):
         # Initializing the play button of the mainMenu
         aux = Button(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 50,
@@ -43,6 +58,7 @@ class MainMenuState(MenuState):
         # Initializing the config button of the mainMenu
         aux = Button(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 100,
@@ -56,6 +72,7 @@ class MainMenuState(MenuState):
         # Initializing the credits button of the mainMenu
         aux = Button(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 150,
@@ -69,6 +86,7 @@ class MainMenuState(MenuState):
         # Initializing the exit button of the mainMenu
         aux = Button(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 200,

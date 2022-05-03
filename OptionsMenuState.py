@@ -16,6 +16,7 @@ class OptionsMenuState(MenuState):
 
         aux = Background(
             gp,
+            sd,
             image,
             0,
             0
@@ -27,6 +28,7 @@ class OptionsMenuState(MenuState):
 
         aux = Background(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 4 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 50
@@ -38,6 +40,7 @@ class OptionsMenuState(MenuState):
 
         aux = Button(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 4 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 100,
@@ -51,6 +54,7 @@ class OptionsMenuState(MenuState):
         # Initializing the config button of the mainMenu
         aux = Button(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 4 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 150,
@@ -63,10 +67,24 @@ class OptionsMenuState(MenuState):
 
         aux = Button(
             gp,
+            sd,
             image,
             gp.getScreenWidth() / 4 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 200,
             '10%'
+        )
+
+        self.entityArray.append(aux)
+
+        image = pygame.image.load('img/back.png').convert_alpha()
+
+        aux = Button(
+            gp,
+            sd,
+            image,
+            gp.getScreenWidth() / 4 - image.get_rect().width / 2,
+            100,
+            'back'
         )
 
         self.entityArray.append(aux)
@@ -82,5 +100,5 @@ class OptionsMenuState(MenuState):
                 self.soundManager.setVolume(0.5)
             elif code == '10%':
                 self.soundManager.setVolume(0.1)
-            elif code == 'exit':
-                self.game.setShouldCloseWindowTrue()
+            elif code == 'back':
+                self.game.removeLastState()
