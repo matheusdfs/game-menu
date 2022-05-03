@@ -21,6 +21,7 @@ class Game:
         while not self.graphicManager.shouldCloseWindow() and not self.shouldCloseWindow:
             self.graphicManager.fill()
             self.stateVector[-1].execute()
+            print(self.stateVector)
             pygame.display.update()
 
     def addState(self, state):

@@ -7,12 +7,11 @@ from OptionsMenuState import OptionsMenuState
 
 
 class MainMenuState(MenuState):
-    entityArray = []
-
     def __init__(self, gp, sd, game):
         MenuState.__init__(self, gp, sd, game)
-        print(sd)
         self.graphicManager = gp
+
+        self.entityArray = []
 
         image = pygame.image.load('img/landscapeMainMenu.png').convert_alpha()
 
