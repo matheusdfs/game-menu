@@ -6,11 +6,12 @@ from Background import Background
 
 
 class OptionsMenuState(MenuState):
-    entityArray = []
+    backButtonControl = False
 
     def __init__(self, gp, sd, game):
         MenuState.__init__(self, gp, sd, game)
-        self.graphicManager = gp
+
+        self.entityArray = []
 
         image = pygame.image.load('img/landscapeMainMenu.png').convert_alpha()
 
@@ -100,5 +101,6 @@ class OptionsMenuState(MenuState):
                 self.soundManager.setVolume(0.5)
             elif code == '10%':
                 self.soundManager.setVolume(0.1)
-            elif code == 'back':
+            elif code == 'back' and not self.backButtonControl:
                 self.game.removeLastState()
+                self.backButtonControl = True

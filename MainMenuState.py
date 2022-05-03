@@ -4,12 +4,12 @@ from MenuState import MenuState
 from Button import Button
 from Background import Background
 from OptionsMenuState import OptionsMenuState
+from RankingMenuState import RankingMenuState
 
 
 class MainMenuState(MenuState):
     def __init__(self, gp, sd, game):
         MenuState.__init__(self, gp, sd, game)
-        self.graphicManager = gp
 
         self.entityArray = []
 
@@ -67,7 +67,7 @@ class MainMenuState(MenuState):
 
         self.entityArray.append(aux)
 
-        image = pygame.image.load('img/creditsButton.png').convert_alpha()
+        image = pygame.image.load('img/rankingButton.png').convert_alpha()
 
         # Initializing the credits button of the mainMenu
         aux = Button(
@@ -76,7 +76,7 @@ class MainMenuState(MenuState):
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 150,
-            'credits'
+            'ranking'
         )
 
         self.entityArray.append(aux)
@@ -104,7 +104,7 @@ class MainMenuState(MenuState):
                 print('Iniciando game')
             elif code == 'options':
                 self.game.addState(OptionsMenuState(self.graphicManager, self.soundManager, self.game))
-            elif code == 'credits':
-                print('Iniciando créditos')
+            elif code == 'ranking':
+                self.game.addState(RankingMenuState(self.graphicManager, self.soundManager, self.game))
             elif code == 'exit':
                 self.game.setShouldCloseWindowTrue()
