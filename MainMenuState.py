@@ -11,6 +11,7 @@ class MainMenuState(MenuState):
 
     def __init__(self, gp, sd, game):
         MenuState.__init__(self, gp, sd, game)
+        print(sd)
         self.graphicManager = gp
 
         image = pygame.image.load('img/landscapeMainMenu.png').convert_alpha()

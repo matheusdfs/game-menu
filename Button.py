@@ -6,7 +6,7 @@ from Entity import Entity
 
 class Button(Entity, ABC):
     name = None
-    mouseIsIn = False
+    soundButton = False
 
     def __init__(self, gp, sd, image, x, y, name):
         Entity.__init__(self, gp, sd, image, x, y)
@@ -15,10 +15,12 @@ class Button(Entity, ABC):
     def execute(self):
         self.draw()
         if self.rect.collidepoint(self.graphicManager.getMousePosition()):
-            if not self.mouseIsIn:
+            if not self.soundButton:
                 self.soundManager.playSound('sounds/button-sound.mp3')
-                self.mouseIsIn = True
+                self.soundButton = True
 
             if pygame.mouse.get_pressed()[0] == 1:
                 return self.name
+        else:
+            self.soundButton = False
         return ''

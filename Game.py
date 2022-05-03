@@ -22,8 +22,6 @@ class Game:
             self.graphicManager.fill()
             self.stateVector[-1].execute()
             pygame.display.update()
-            print(self.stateVector)
-            print(self.stateVector[-1])
 
     def addState(self, state):
         self.stateVector.append(state)

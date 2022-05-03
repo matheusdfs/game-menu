@@ -19,6 +19,7 @@ class Entity(ABC):
         self.coordX = x
         self.coordY = y
         self.graphicManager = gp
+        self.soundManager = sm
 
     def setGraphicManager(self, gp):
         self.graphicManager = gp
