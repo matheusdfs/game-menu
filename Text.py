@@ -14,7 +14,7 @@ class Text(Entity, ABC):
 
         font = pygame.font.SysFont("verdana", 40)
 
-        self.surface = font.render(text, True, (255, 0, 0))
+        self.surface = font.render(text, True, (0, 0, 0))
 
     def draw(self):
         self.graphicManager.drawText(self.surface, (self.coordX, self.coordY))

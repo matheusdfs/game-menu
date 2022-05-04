@@ -58,7 +58,7 @@ class RankingMenuState(MenuState):
                 self.soundManager,
                 25,
                 self.coordYRanking,
-                name + str(score) + lvl_name
+                name + " " + str(score) + " " + lvl_name
             )
 
             self.entityArray.append(aux)
