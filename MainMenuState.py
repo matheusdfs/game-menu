@@ -1,7 +1,7 @@
 import pygame
 
-from MenuState import MenuState
 from Button import Button
+from MenuState import MenuState
 from Background import Background
 from OptionsMenuState import OptionsMenuState
 from RankingMenuState import RankingMenuState

@@ -83,8 +83,8 @@ class OptionsMenuState(MenuState):
             gp,
             sd,
             image,
-            gp.getScreenWidth() / 4 - image.get_rect().width / 2,
-            100,
+            25,
+            25,
             'back'
         )
 

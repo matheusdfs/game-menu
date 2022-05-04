@@ -12,6 +12,9 @@ class GraphicManager:
     def draw(self, figure, position):
         self.screen.blit(figure, position)
 
+    def drawText(self, text, position):
+        self.screen.blit(text, position)
+
     def fill(self):
         self.screen.fill((0, 0, 0))
 

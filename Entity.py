@@ -14,8 +14,9 @@ class Entity(ABC):
 
     def __init__(self, gp, sm, image, x, y):
         self.image = image
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
+        if image is not None:
+            self.rect = self.image.get_rect()
+            self.rect.topleft = (x, y)
         self.coordX = x
         self.coordY = y
         self.graphicManager = gp
