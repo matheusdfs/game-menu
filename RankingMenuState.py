@@ -117,6 +117,7 @@ class RankingMenuState(MenuState):
             elif code == '10%':
                 self.soundManager.setVolume(0.1)
             elif code == 'back' and not self.backButtonControl:
-                self.con.close()
+                if self.con:
+                    self.con.close()
                 self.game.removeLastState()
                 self.backButtonControl = True

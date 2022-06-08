@@ -5,7 +5,7 @@ from MenuState import MenuState
 from Background import Background
 from OptionsMenuState import OptionsMenuState
 from RankingMenuState import RankingMenuState
-
+from ChooseGameTypeState import ChooseGameTypeState
 
 class MainMenuState(MenuState):
     def __init__(self, gp, sd, game):
@@ -101,7 +101,7 @@ class MainMenuState(MenuState):
             if code == '':
                 pass
             elif code == 'play':
-                print('Iniciando game')
+                self.game.addState(ChooseGameTypeState(self.graphicManager, self.soundManager, self.game))
             elif code == 'options':
                 self.game.addState(OptionsMenuState(self.graphicManager, self.soundManager, self.game))
             elif code == 'ranking':
