@@ -25,6 +25,61 @@ class ChooseGameTypeState(MenuState):
 
         self.entityArray.append(aux)
 
+        image = pygame.image.load('img/singlePlayerButton.png').convert_alpha()
+
+        # Initializing the play button of the mainMenu
+        aux = Button(
+            gp,
+            sd,
+            image,
+            gp.getScreenWidth() / 2 - image.get_rect().width / 2,
+            gp.getScreenHeight() / 2 + 0,
+            'play'
+        )
+
+        self.entityArray.append(aux)
+
+        image = pygame.image.load('img/multiPlayerButton.png').convert_alpha()
+
+        # Initializing the play button of the mainMenu
+        aux = Button(
+            gp,
+            sd,
+            image,
+            gp.getScreenWidth() / 2 - image.get_rect().width / 2,
+            gp.getScreenHeight() / 2 + 100,
+            'play'
+        )
+
+        self.entityArray.append(aux)
+
+        image = pygame.image.load('img/localButton.png').convert_alpha()
+
+        # Initializing the play button of the mainMenu
+        aux = Button(
+            gp,
+            sd,
+            image,
+            gp.getScreenWidth() / 2 - image.get_rect().width / 2,
+            gp.getScreenHeight() / 2 + 200,
+            'play'
+        )
+
+        self.entityArray.append(aux)
+
+        image = pygame.image.load('img/back.png').convert_alpha()
+
+        aux = Button(
+            gp,
+            sd,
+            image,
+            25,
+            25,
+            'back'
+        )
+
+        self.entityArray.append(aux)
+
     def execute(self):
         for entity in self.entityArray:
             code = entity.execute()

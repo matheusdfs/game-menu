@@ -1,20 +1,14 @@
 import pygame
-import mysql.connector
+import psycopg2
 
 from Text import Text
 from Button import Button
 from MenuState import MenuState
 from Background import Background
 
-
 class RankingMenuState(MenuState):
-    config = {
-        'user': 'root',
-        'password': 'root123',
-        'host': 'localhost',
-    }
-
     con = None
+    cur = None
     backButtonControl = False
     coordYRanking = 200
 
@@ -37,21 +31,21 @@ class RankingMenuState(MenuState):
 
         # connect to the database
         try:
-            self.con = mysql.connector.connect(**self.config)
+            self.con = psycopg2.connect(host="localhost", user="postgres", password="postgres", dbname="operation")
             self.initializeEntityConnectionSuccessful()
-        except mysql.connector.Error as err:
+        except psycopg2.Error as err:
             print(err)
             self.initializeEntityConnectionError()
 
     def initializeEntityConnectionSuccessful(self):
-        cursor = self.con.cursor(buffered=True)
-        query = ("select player.name, score.score, level.name as lvl_name from game_menu.score left join "
-                 "game_menu.player on score.player_id = player.id left join game_menu.level on score.level_id = "
-                 "level.id order by score desc limit 5;")
+        self.cur = self.con.cursor()
+        query = ("select p.name, s.score, l.name from game.score s inner join game.player p on s.player_id = p.id inner join game.level l on s.level_id = l.id order by s.score desc limit 5;")
 
-        cursor.execute(query)
+        self.cur.execute(query)
 
-        for (name, score, lvl_name) in cursor:
+        recset = self.cur.fetchall()
+
+        for (name, score, lvl_name) in recset:
             self.coordYRanking = self.coordYRanking + 50
             aux = Text(
                 self.graphicManager,
@@ -63,7 +57,7 @@ class RankingMenuState(MenuState):
 
             self.entityArray.append(aux)
 
-        cursor.close()
+        self.cur.close()
         self.con.close()
 
         image = pygame.image.load('img/back.png').convert_alpha()
@@ -110,12 +104,6 @@ class RankingMenuState(MenuState):
             code = entity.execute()
             if code == '':
                 pass
-            elif code == '100%':
-                self.soundManager.setVolume(1.0)
-            elif code == '50%':
-                self.soundManager.setVolume(0.5)
-            elif code == '10%':
-                self.soundManager.setVolume(0.1)
             elif code == 'back' and not self.backButtonControl:
                 if self.con:
                     self.con.close()
