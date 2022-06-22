@@ -4,6 +4,9 @@ from GraphicManager import GraphicManager
 from MainMenuState import MainMenuState
 from SoundManager import SoundManager
 
+from SingleGameState import SingleGameState
+from OnlineGameState import OnlineGameState
+from MultiLocalGameState import MultiLocalGameState
 
 class Game:
     shouldCloseWindow = False
@@ -31,3 +34,12 @@ class Game:
 
     def setShouldCloseWindowTrue(self):
         self.shouldCloseWindow = True
+
+    def initSingleplayer(self):
+        self.addState(SingleGameState(self.graphicManager, self.soundManager, self))
+
+    def initMultiplayer(self):
+        self.addState(OnlineGameState(self.graphicManager, self.soundManager, self))
+    
+    def initLocal(self):
+        self.addState(MultiLocalGameState(self.graphicManager, self.soundManager, self))
