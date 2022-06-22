@@ -10,14 +10,15 @@ class MultiLocalGameState(State):
     def __init__(self, gp, sd, game):
         State.__init__(self, gp, sd, game)
         self.entityArray = []
-        image = pygame.image.load('img/localButton.png').convert_alpha()
+        image = pygame.image.load('img/landscapeMainMenu.png').convert_alpha()
 
+        # Initializing the background of the mainMenu
         aux = Background(
-            self.graphicManager,
-            self.soundManager,
+            gp,
+            sd,
             image,
-            self.graphicManager.getScreenWidth() / 4 - image.get_rect().width / 2,
-            self.graphicManager.getScreenHeight() / 2 + 50
+            0,
+            0
         )
 
         self.entityArray.append(aux)
@@ -32,8 +33,32 @@ class MultiLocalGameState(State):
             100,
             'back'
         )
+        self.entityArray.append(aux)
+        image = pygame.image.load('img/LocalButton.png').convert_alpha()
+        aux = Button(
+            self.graphicManager,
+            self.soundManager,
+            image,
+            self.graphicManager.getScreenWidth() / 4 - image.get_rect().width / 2,
+            self.graphicManager.getScreenHeight() / 2 + 50,
+            "b"
+        )
 
         self.entityArray.append(aux)
+        
+        image = pygame.image.load('img/wall3.png').convert_alpha()
+
+        for i in range(0, 20):
+            aux = Button(
+                self.graphicManager,
+                self.soundManager,
+                image,
+                image.get_rect().width*i,
+                self.graphicManager.getScreenHeight() / 2 + image.get_rect().height*6,
+                'a'
+            )
+
+            self.entityArray.append(aux)
     def execute(self):
         for entity in self.entityArray:
             code = entity.execute()

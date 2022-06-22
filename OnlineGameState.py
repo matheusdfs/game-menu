@@ -12,14 +12,55 @@ class OnlineGameState(State):
         self.entityArray = []
         self.server = Server()
         self.server.createServer()
-        image = pygame.image.load('img/multiPlayerButton.png').convert_alpha()
 
+        image = pygame.image.load('img/landscapeMainMenu.png').convert_alpha()
+
+        # Initializing the background of the mainMenu
         aux = Background(
+            gp,
+            sd,
+            image,
+            0,
+            0
+        )
+
+        self.entityArray.append(aux)
+
+        image = pygame.image.load('img/back.png').convert_alpha()
+
+        aux = Button(
             self.graphicManager,
             self.soundManager,
             image,
             self.graphicManager.getScreenWidth() / 4 - image.get_rect().width / 2,
-            self.graphicManager.getScreenHeight() / 2 + 50
+            100,
+            'back'
+        )
+        self.entityArray.append(aux)
+        
+        image = pygame.image.load('img/wall3.png').convert_alpha()
+
+        for i in range(0, 20):
+            aux = Button(
+                self.graphicManager,
+                self.soundManager,
+                image,
+                image.get_rect().width*i,
+                self.graphicManager.getScreenHeight() / 2 + image.get_rect().height*6,
+                'a'
+            )
+
+            self.entityArray.append(aux)
+
+
+        image = pygame.image.load('img/multiPlayerButton.png').convert_alpha()
+        aux = Button(
+            self.graphicManager,
+            self.soundManager,
+            image,
+            self.graphicManager.getScreenWidth() / 4 - image.get_rect().width / 2,
+            self.graphicManager.getScreenHeight() / 2 + 50,
+            "b"
         )
 
         self.entityArray.append(aux)
