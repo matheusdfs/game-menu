@@ -34,7 +34,7 @@ class ChooseGameTypeState(MenuState):
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 0,
-            'play'
+            'single'
         )
 
         self.entityArray.append(aux)
@@ -48,7 +48,7 @@ class ChooseGameTypeState(MenuState):
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 100,
-            'play'
+            'multi'
         )
 
         self.entityArray.append(aux)
@@ -62,7 +62,7 @@ class ChooseGameTypeState(MenuState):
             image,
             gp.getScreenWidth() / 2 - image.get_rect().width / 2,
             gp.getScreenHeight() / 2 + 200,
-            'play'
+            'local'
         )
 
         self.entityArray.append(aux)
@@ -85,12 +85,12 @@ class ChooseGameTypeState(MenuState):
             code = entity.execute()
             if code == '':
                 pass
-            elif code == '100%':
-                self.soundManager.setVolume(1.0)
-            elif code == '50%':
-                self.soundManager.setVolume(0.5)
-            elif code == '10%':
-                self.soundManager.setVolume(0.1)
+            elif code == 'single':
+                self.game.initSingleplayer()
+            elif code == 'multi':
+                self.game.initMultiplayer()
+            elif code == 'local':
+                self.game.initLocal()
             elif code == 'back' and not self.backButtonControl:
                 self.game.removeLastState()
                 self.backButtonControl = True
